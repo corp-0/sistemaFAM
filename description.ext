@@ -1,0 +1,66 @@
+class Header 				// Tipo de mision, Cantidad minima y maxima de jugadores admitidos.
+{
+	gameType 	=  coop; 	// Tipo de juego
+	minPlayers 	=  1; 		// Minimo de Jugadores soportados
+	maxPlayers	=  13; 		// Maximo de jugadores soportados
+};
+
+
+Author 			 = "Federación Americana de Milsim. - NOMBRE -"; 														
+OnLoadName       = "Nombre misión."; 							
+briefingName 	 = "Nombre misión.";								
+OnLoadMission    = "Descripción misión.";
+overviewText 	 = "Descripción en servidor.";
+overviewPicture	 = "bannermision.jpg";
+loadScreen		 = "bannermision.jpg";
+
+//Opciones de Respawn
+Respawn = 2;
+RespawnDelay = 7200;
+RespawnDialog = 0;
+
+//Opciones de misión
+onLoadIntroTime = "false";
+onLoadMissionTime = "false";
+disabledAI = 1;
+defriefing = 1;
+showGPS = 1;
+
+//Debug y Admin
+enableDebugConsole = 1;
+
+// Inicio CFG's
+#include "GUI\pantallaFinal.h"
+
+class CfgFunctions
+{
+    #include "cfg\cfgFunctions.hpp"
+};
+
+class CfgSounds
+{
+    #include "cfg\cfgSounds.hpp"
+};
+
+class RscTitles 
+{
+    #include "cfg\rscTitles.hpp"
+};
+
+class cfgNotifications
+{
+    #include "cfg\cfgNotifications.hpp"
+};
+
+class Extended_Init_EventHandlers 
+{
+    class Man {
+    init = "_this call (compile preprocessFileLineNumbers 'funciones\bajasCiviles.sqf')";
+    };
+};
+
+class CfgDebriefing
+{
+    #include "cfg\cfgDebriefing.hpp"
+};
+// Fin CFG's
