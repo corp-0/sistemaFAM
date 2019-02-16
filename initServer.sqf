@@ -21,7 +21,7 @@ addMissionEventHandler ["handleDisconnect", {
 	_unit hideObjectGlobal true;
 	_unit disableAI "ALL";
 
-	_unit allowDamage true;
+	_unit allowDamage false;
 
 	true;
 }];

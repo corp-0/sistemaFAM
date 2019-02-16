@@ -69,6 +69,7 @@ if(_didJIP) then
 		};
 	};
 	player hideObjectGlobal false;
+	player allowDamage true;
 };
 
 [] spawn FAM_fnc_cronometro_Display;
