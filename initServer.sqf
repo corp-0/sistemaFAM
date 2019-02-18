@@ -14,6 +14,9 @@
 	Retorna:
 	--
 */
+tiempoComienzoReal = nil;
+tiempoFinal       = nil;
+introDone = nil;
 
 // Manejadores de eventos
 addMissionEventHandler ["handleDisconnect", {
@@ -27,23 +30,6 @@ addMissionEventHandler ["handleDisconnect", {
 }];
 
 [] call FAM_fnc_bandera;
-
-/*
-El manejador de eventos extendido de CBA permite contar civiles generador dinámicamente.
-// Contando civiles muertos SÓLO FUNCIONA CON CIVILES PUESTOS EN EL EDITOR
-{if (side _x == Civilian && _x iskindof "Man") then {
-    _x addEventHandler ["killed", 
-    {
-		params["_unit"];
-		["fallo", [format["¡%1 ha muerto en el fuego cruzado!", _unit]], 'Cada baja civil resta: <t color="#ff0000">-2</t> pts'] remoteExecCall ["BIS_fnc_showNotification", 0, false];
-		civilesFinal = civilesFinal + 1;
-		publicVariable "civilesFinal";
-      
-    }];
-  };   
-
-} foreach allunits;  
-*/
 
 // Inicializando las variables del sistema 
 

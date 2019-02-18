@@ -9,10 +9,10 @@ class FAM
         file = "funciones";
         class bandera {};
         class contador {};
-        class cronometro {};
-        class cronometro_Display{};
         class pantallaFinal {};
         class puntaje {};
         class IAskill {};
+        class cronometro {};
+        class initCronometro {};
     };
 };

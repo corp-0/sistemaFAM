@@ -23,13 +23,17 @@ RespawnDialog = 0;
 onLoadIntroTime = "false";
 onLoadMissionTime = "false";
 disabledAI = 1;
-defriefing = 1;
 showGPS = 1;
 
 //Debug y Admin
 enableDebugConsole = 1;
 
 // Inicio CFG's
+class params
+{
+    #include "cfg\cfgParams.hpp"
+};
+
 #include "GUI\pantallaFinal.h"
 
 class CfgFunctions
