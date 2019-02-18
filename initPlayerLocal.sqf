@@ -17,6 +17,27 @@
 
 params["_player", "_didJIP"];
 
+/****************************************** Manejadores de eventos *********************************************************************** */
+
+// Evento de muerto, para restar puntos cada vez que un jugador muera
+_player addMPEventHandler ["MPKilled", 
+{
+	params ["_unit", "_killer"];
+	["fallo", [format["%1  ha caído en combate", name _unit], '¡Restan: <t color="#ff0000">-1</t> pts!']] call BIS_fnc_showNotification;
+	jugadoresFinal = jugadoresFinal +1;
+	publicVariableServer "jugadoresFinal";
+	
+}];
+
+// Evento de terminar de cargar, para hacer visibles a los jugadores JIP
+["cargado", "onPreloadFinished", 
+{
+	player hideObjectGlobal false;
+	player allowDamage true;
+}] call BIS_fnc_addStackedEventHandler;
+
+
+/************************************ JIP y no jip ************************************************************************************ */
 if (!_didJIP) then
 {
 
@@ -68,19 +89,7 @@ if(_didJIP) then
 			diag_log str (missionNamespace getVariable["BIS_fnc_startLoadingScreen_ids", []] );
 		};
 	};
-	player hideObjectGlobal false;
-	player allowDamage true;
+
 };
 
 [] spawn FAM_fnc_cronometro_Display;
-
-// Manejador de eventos para cada jugador, resta 1 puntos al morir.
-
-_player addMPEventHandler ["MPKilled", 
-{
-	params ["_unit", "_killer"];
-	["fallo", [format["%1  ha caído en combate", name _unit], '¡Restan: <t color="#ff0000">-1</t> pts!']] call BIS_fnc_showNotification;
-	jugadoresFinal = jugadoresFinal +1;
-	publicVariableServer "jugadoresFinal";
-	
-}];
