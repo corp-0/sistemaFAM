@@ -17,9 +17,21 @@
 
 params["_player", "_didJIP"];
 
+if (_didJIP) then {jipeado = true} else {jipeado = false};
 /****************************************** Manejadores de eventos *********************************************************************** */
 
 // Evento de muerto, para restar puntos cada vez que un jugador muera
+
+// Evento de terminar de cargar
+["cargado", "onPreloadFinished", 
+{
+	player hideObjectGlobal false;
+	player allowDamage true;
+	if (!jipeado) then {["primeralinea", "segundalinea"] execVM "scripts\IntroFAM.sqf"};
+	cargado = true;
+
+}] call BIS_fnc_addStackedEventHandler;
+
 _player addMPEventHandler ["MPKilled", 
 {
 	params ["_unit", "_killer"];
@@ -29,67 +41,12 @@ _player addMPEventHandler ["MPKilled",
 	
 }];
 
-// Evento de terminar de cargar, para hacer visibles a los jugadores JIP
-["cargado", "onPreloadFinished", 
-{
-	player hideObjectGlobal false;
-	player allowDamage true;
-}] call BIS_fnc_addStackedEventHandler;
+/************************************ Fin manejadores ************************************************************************************ */
+missionNamespace getVariable "tiempoFinal";
+missionNamespace getVariable "tiempoComienzoReal";
 
-
-/************************************ JIP y no jip ************************************************************************************ */
-if (!_didJIP) then
-{
-
-	[] spawn
-	{
-		startLoadingScreen ["Cargando sistema FAM...", ""];
-		uiSleep 10;
-
-		endLoadingScreen;
-	};
-	
-	waitUntil 
-	{
-		if(missionNamespace getVariable ["BIS_fnc_startLoadingScreen_ids", []] isEqualTo [] ) then
-		{
-			true
-		} else
-		{
-			diag_log "Falta por cargar...";
-			diag_log str (missionNamespace getVariable["BIS_fnc_startLoadingScreen_ids", []] );
-		};
-	};
-
-	player enableSimulation false;
-	uiSleep 10;
-	_briefing       = [] execVM "scripts\initBriefing.sqf";
-	_terceraPersona = [] execVM "scripts\terceraPersona.sqf";
-	["titulo1", "titulo2"] execVM "scripts\IntroFAM.sqf";
-	player enableSimulation true;
-};
-
-if(_didJIP) then 
-{
-	[] spawn
-	{
-		startLoadingScreen ["Cargando sistema FAM...", ""];
-		uiSleep 10;
-		endLoadingScreen;
-	};
-
-	waitUntil 
-	{
-		if(missionNamespace getVariable ["BIS_fnc_startLoadingScreen_ids", []] isEqualTo [] ) then
-		{
-			true
-		} else
-		{
-			diag_log "Falta por cargar...";
-			diag_log str (missionNamespace getVariable["BIS_fnc_startLoadingScreen_ids", []] );
-		};
-	};
-
-};
-
-[] spawn FAM_fnc_cronometro_Display;
+esperando = true;
+if (isNil "tiempoFinal") then {waitUntil {!isNil "tiempoFinal"}};
+if (isNil "tiempoComienzoReal") then {waitUntil !isNil "tiempoComienzoReal"};
+esperando = false;
+[tiempoFinal, tiempoComienzoReal] call FAM_fnc_cronometro;

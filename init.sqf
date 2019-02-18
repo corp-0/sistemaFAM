@@ -17,13 +17,10 @@ if(isServer) then
 	[1] call FAM_fnc_contador;
 };
 
-sleep 10;
-
-if(isServer && isNil "_init_done") then 
+if(isServer && isNil "init_done") then 
 {
-	[7200] remoteExec ["FAM_fnc_cronometro", 0, false];
 	_skillsUnits = [] call FAM_fnc_IAskill;
-	_init_done = true;
-	
+	[] spawn FAM_fnc_initCronometro;
+	init_done = true;
 };
 

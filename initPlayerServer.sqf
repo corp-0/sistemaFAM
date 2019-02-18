@@ -37,8 +37,10 @@ if (_didJip) then
 	_idPlayer publicVariableClient "penaTiempo";
 	_idPlayer publicVariableClient "jugadoresFinal";
 	_idPlayer publicVariableClient "civilesFinal";
-	_idPlayer publicVariableClient "TIEMPO_PUBLICO";
 	_idPlayer publicVariableClient "detenerTiempo";
+	_idPlayer publicVariableClient "tiempoComienzoReal";
+	_idPlayer publicVariableClient "tiempoFinal";
+
 	/* 
 	***********************************************
 			ESPACIO PARA VARIABLES DE MISIÓN
@@ -46,11 +48,6 @@ if (_didJip) then
 	*/
 
 	_idPlayer publicVariableClient "variablesIniciadas";
-
-	// [FAM_fnc_cronometro, TIEMPO_PUBLICO] remoteExec ["spawn", _idPlayer];
-	// [TIEMPO_PUBLICO] remoteExec ["FAM_fnc_cronometro", _idPlayer, true];
-	[TIEMPO_PUBLICO] remoteExec ["FAM_fnc_cronometro", _player];
-
 };
 
 

@@ -18,6 +18,8 @@
 
 params["_FAM_titulo1", "_FAM_titulo2"];
 
+waitUntil {time > 0};
+player enableSimulation false;
 enableRadio false;
 enableEnvironment false;
 
@@ -44,3 +46,7 @@ sleep 2;
 any= [_FAM_titulo1,_FAM_titulo2] spawn BIS_fnc_infoText;
 sleep 5;
 ["BIS_blackStart", true] call BIS_fnc_blackIn;
+player enableSimulation true;
+
+introDone = true;
+publicVariableServer "introDone";

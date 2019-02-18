@@ -11,6 +11,7 @@
 	--
 */
 
+todosMuertos = nil;
 
 [banderaFAM, //Nombre del objeto
 "Terminar Partida", // Titulu de la acción
@@ -38,12 +39,14 @@
 	{
 		["sinTiempo"] remoteExecCall ["BIS_fnc_endMissionServer"];
 	}; 
-
-	if(todosMuertos) then 
+	if(!isNil "todosMuertos") then 
 	{
-		["todoMuertos"] remoteExecCall ["BIS_fnc_endMissionServer"];
+		if(todosMuertos) then 
+		{
+			["todoMuertos"] remoteExecCall ["BIS_fnc_endMissionServer"];
+		};
 	};
-
+	
 	if (!publicTimerOver && !todosMuertos) then
 	{
 		["EveryoneWon"] remoteExecCall ["BIS_fnc_endMissionServer"]; 

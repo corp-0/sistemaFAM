@@ -1,36 +1,45 @@
-/*
-	FAM_fnc_cronometro
-	
-	Descripción:
-	Inicia un reloj que lleva el tiempo de partida para la competencia FAM.
+params["_tiempoFinal", "_tiempoComienzoReal"];
 
-	Parámetros:
-		0:
-			INTEGER - Cantidad de tiempo
-	Retorna:
-	true
-*/
-
-TIEMPO_PUBLICO = _this select 0;
-
-if (isNil "cronometro_checkrun") then
+while {true} do 
 {
-	cronometro_checkrun = true;
+	_tiempoActual = _tiempoFinal - serverTime;
 
-	publicTimerOver     = false;
-	detenerTiempo       = false;
-
-	while {TIEMPO_PUBLICO > 0} do 
+	while {_tiempoActual > 10} do 
 	{
-		TIEMPO_PUBLICO = TIEMPO_PUBLICO -1;
-		uiSleep 1;
+		_tiempoActual = _tiempoFinal - serverTime;
+		if(detenerTiempo) exitWith 
+		{
+			while {true} do 
+			{
+			
+				["<t font = 'PuristaMedium'><t size = '1'><t color = '#00ffd8'>" + timedisplay + "</t>",-1,0.10,10,0,0,789] spawn BIS_fnc_dynamicText;
+				uiSleep 10;
+			};
+		};
+		_timeStamp = _tiempoActual/3600;
+		timedisplay = [_timeStamp, "HH:MM:SS"] call BIS_fnc_timeToString;
+		["<t font = 'PuristaMedium'><t size = '1'>" + timedisplay + "</t>",1,-0.15,1,0] spawn BIS_fnc_dynamicText;
 	};
 
-	if(isServer && cronometro_checkrun) then 
+	while {_tiempoActual <= 10 && _tiempoActual > 1} do
 	{
-		publicTimerOver = true;
-		publicVariable "publicTimerOver";
+		playSound "time";
+		_tiempoActual = _tiempoFinal - serverTime;
+		_timeStamp = _tiempoActual/3600;
+		timedisplay = [_timeStamp, "HH:MM:SS"] call BIS_fnc_timeToString;
+		["<t font = 'PuristaMedium'><t size = '1'><t color = '#FF0000'>" + timedisplay + "</t>",-1,-1,1,0] spawn BIS_fnc_dynamicText;
+	};
 
-		[2] call FAM_fnc_contador;
+	if(_tiempoActual == 0) exitWith
+	{
+		_fin = [_tiempoActual, "HH:MM:SS"] call BIS_fnc_timeToString;
+		["<t font = 'PuristaMedium'><t size = '1'><t color = '#FF0000'>" + "00:00:00" + "</t>",-1,0.10,10,1,0,789] spawn BIS_fnc_dynamicText;	
+
+		if(isServer) then 
+		{
+			publicTimerOver = true;
+			publicVariable "publicTimerOver";
+			[2] call FAM_fnc_contador;
+		};
 	};
 };
