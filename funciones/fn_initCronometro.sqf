@@ -13,18 +13,7 @@
 	--
 */
 
-tiempoMision = ["tiempoMision"] call BIS_fnc_getParamValue;
-switch tiempoMision do 
-{
-	case 0: 
-	{
-		tiempoMision = 7200;
-	};
-	case 1:
-	{
-		tiempoMision = 15;
-	};
-};
+TIEMPO_MISION = getMissionConfigValue ["TIEMPO_MISION", 7200];
 
 if(isServer) then 
 {
@@ -33,7 +22,7 @@ if(isServer) then
 
 	tiempoComienzoReal = serverTime;
 	publicVariable "tiempoComienzoReal";
-	tiempoFinal = tiempoComienzoReal + tiempoMision;
+	tiempoFinal = tiempoComienzoReal + TIEMPO_MISION;
 	publicVariable "tiempoFinal";
 	[tiempoFinal, tiempoComienzoReal] spawn FAM_fnc_cronometro;
 };

@@ -1,3 +1,4 @@
+#include "configuracion_FAM.hpp"
 class Header 				// Tipo de mision, Cantidad minima y maxima de jugadores admitidos.
 {
 	gameType 	=  coop; 	// Tipo de juego
@@ -5,19 +6,12 @@ class Header 				// Tipo de mision, Cantidad minima y maxima de jugadores admiti
 	maxPlayers	=  13; 		// Maximo de jugadores soportados
 };
 
-
-Author 			 = "Federación Americana de Milsim. - NOMBRE -"; 														
-OnLoadName       = "Nombre misión."; 							
-briefingName 	 = "Nombre misión.";								
-OnLoadMission    = "Descripción misión.";
-overviewText 	 = "Descripción en servidor.";
-overviewPicture	 = "bannermision.jpg";
-loadScreen		 = "bannermision.jpg";
-
 //Opciones de Respawn
 Respawn = 2;
 RespawnDelay = 7200;
 RespawnDialog = 0;
+reviveMode = 0;
+reviveUnconsciousStateMode = 0;
 
 //Opciones de misión
 onLoadIntroTime = "false";
@@ -29,11 +23,6 @@ showGPS = 1;
 enableDebugConsole = 1;
 
 // Inicio CFG's
-class params
-{
-    #include "cfg\cfgParams.hpp"
-};
-
 #include "GUI\pantallaFinal.h"
 
 class CfgFunctions

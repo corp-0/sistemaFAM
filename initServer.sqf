@@ -71,20 +71,10 @@ publicVariable "civilesFinal";
 detenerTiempo = false;
 publicVariable "detenerTiempo";
 
-/* ESPACIO PARA VARIABLES DE MISIÓN
-
-	var1 = "valor";
-	publicVariable "var1";
-
-	var2 = "valor";
-	publicVariable "var2";
-
-	var3 = "valor";
-	publicVariale "var3";
-
-	var4 = "valor";
-	publicVariable "var4";
-
+/* 
+***********************************************
+		ESPACIO PARA VARIABLES DE MISIÓN
+************************************************
 */
 
 variablesIniciadas = true;
