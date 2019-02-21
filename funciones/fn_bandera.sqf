@@ -11,8 +11,6 @@
 	--
 */
 
-todosMuertos = nil;
-
 [banderaFAM, //Nombre del objeto
 "Terminar Partida", // Titulu de la acción
 "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", //El icono que se mostrara en pantalla (chequeara descripcion para este icono)
@@ -32,6 +30,7 @@ todosMuertos = nil;
 {}, // El codigo ejecutado en todo el tick del progreso (eso no sera usado por ahora)
 {
 	detenerTiempo = true; 
+	publicVariable "detenerTiempo";
 	[2] remoteExecCall ["FAM_fnc_contador", 2];
 	sleep 20;
 
@@ -39,15 +38,8 @@ todosMuertos = nil;
 	{
 		["sinTiempo"] remoteExecCall ["BIS_fnc_endMissionServer"];
 	}; 
-	if(!isNil "todosMuertos") then 
-	{
-		if(todosMuertos) then 
-		{
-			["todoMuertos"] remoteExecCall ["BIS_fnc_endMissionServer"];
-		};
-	};
 	
-	if (!publicTimerOver && !todosMuertos) then
+	if (!publicTimerOver) then
 	{
 		["EveryoneWon"] remoteExecCall ["BIS_fnc_endMissionServer"]; 
 	};

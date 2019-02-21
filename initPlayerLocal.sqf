@@ -27,8 +27,11 @@ if (_didJIP) then {jipeado = true} else {jipeado = false};
 {
 	player hideObjectGlobal false;
 	player allowDamage true;
-	if (!jipeado) then {["primeralinea", "segundalinea"] execVM "scripts\IntroFAM.sqf"};
-	cargado = true;
+	
+	PRIMERA_LINEA = getMissionConfigValue ["PRIMERA_LINEA", "primera_linea"];
+	SEGUNDA_LINEA = getMissionConfigValue ["SEGUNDA_LINEA", "segunda_linea"];
+
+	if (!jipeado) then {[PRIMERA_LINEA, SEGUNDA_LINEA] execVM "scripts\IntroFAM.sqf"};
 
 }] call BIS_fnc_addStackedEventHandler;
 
@@ -45,8 +48,6 @@ _player addMPEventHandler ["MPKilled",
 missionNamespace getVariable "tiempoFinal";
 missionNamespace getVariable "tiempoComienzoReal";
 
-esperando = true;
 if (isNil "tiempoFinal") then {waitUntil {!isNil "tiempoFinal"}};
 if (isNil "tiempoComienzoReal") then {waitUntil !isNil "tiempoComienzoReal"};
-esperando = false;
 [tiempoFinal, tiempoComienzoReal] call FAM_fnc_cronometro;
