@@ -1,7 +1,7 @@
 params["_tiempoFinal", "_tiempoComienzoReal"];
 
-FAM_posX = (safeZoneX + safeZoneW) * 0.5525;
-FAM_posY = safeZoneY + safeZoneH * 0.026;
+FAM_posX = (safeZoneX + safeZoneW) * 0.4825;
+FAM_posY = safeZoneY * 0.726;
 
 while {true} do 
 {
