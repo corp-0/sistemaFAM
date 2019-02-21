@@ -1,5 +1,8 @@
 params["_tiempoFinal", "_tiempoComienzoReal"];
 
+FAM_posX = (safeZoneX + safeZoneW) * 0.5525;
+FAM_posY = safeZoneY + safeZoneH * 0.026;
+
 while {true} do 
 {
 	_tiempoActual = _tiempoFinal - serverTime;
@@ -18,7 +21,7 @@ while {true} do
 		};
 		_timeStamp = _tiempoActual/3600;
 		timedisplay = [_timeStamp, "HH:MM:SS"] call BIS_fnc_timeToString;
-		["<t font = 'PuristaMedium'><t size = '1'>" + timedisplay + "</t>",1,-0.15,1,0] spawn BIS_fnc_dynamicText;
+		["<t font = 'PuristaMedium'><t size = '1'>" + timedisplay + "</t>",FAM_posX,FAM_posY,1,0] spawn BIS_fnc_dynamicText;
 	};
 
 	while {_tiempoActual <= 10 && _tiempoActual > 1} do
@@ -27,13 +30,13 @@ while {true} do
 		_tiempoActual = _tiempoFinal - serverTime;
 		_timeStamp = _tiempoActual/3600;
 		timedisplay = [_timeStamp, "HH:MM:SS"] call BIS_fnc_timeToString;
-		["<t font = 'PuristaMedium'><t size = '1'><t color = '#FF0000'>" + timedisplay + "</t>",-1,-1,1,0] spawn BIS_fnc_dynamicText;
+		["<t font = 'PuristaMedium'><t size = '1'><t color = '#FF0000'>" + timedisplay + "</t>",FAM_posX,FAM_posY,1,0] spawn BIS_fnc_dynamicText;
 	};
 
 	if(_tiempoActual == 0) exitWith
 	{
 		_fin = [_tiempoActual, "HH:MM:SS"] call BIS_fnc_timeToString;
-		["<t font = 'PuristaMedium'><t size = '1'><t color = '#FF0000'>" + "00:00:00" + "</t>",-1,0.10,10,1,0,789] spawn BIS_fnc_dynamicText;	
+		["<t font = 'PuristaMedium'><t size = '1'><t color = '#FF0000'>" + "00:00:00" + "</t>",FAM_posX,FAM_posY,10,1,0,789] spawn BIS_fnc_dynamicText;	
 
 		if(isServer) then 
 		{
