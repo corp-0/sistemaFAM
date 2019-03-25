@@ -70,6 +70,8 @@ publicVariable "civilesFinal";
 // Variable de cronómetro
 detenerTiempo = false;
 publicVariable "detenerTiempo";
+publicTimerOver = false;
+publicVariable "publicTimerOver";
 
 /* 
 ***********************************************
