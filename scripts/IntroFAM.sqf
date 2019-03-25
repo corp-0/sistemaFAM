@@ -48,5 +48,8 @@ sleep 5;
 ["BIS_blackStart", true] call BIS_fnc_blackIn;
 player enableSimulation true;
 
-introDone = true;
-publicVariableServer "introDone";
+if(isNil "introDone") then
+{
+	introDone = true;
+	publicVariableServer "introDone";
+};
