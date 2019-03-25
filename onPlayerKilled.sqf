@@ -6,10 +6,19 @@
 	Manda al jugador a espectar hasta que termine.
 
 	Parámetros:
-	--
+		0:
+			_player
+					Objeto - representa al objeto que controlaba el jugador que acaba de morir.
+		1:
+			_killer
+					Objeto - representa al objeto que dio muerte al jugador.
+		2:
+			_respawn
+					String - creo que representa al 
 	Retorna:
 	--
 */
+params["_player", "_killer", "_respawn", "_respawnDelay"]
 
 sleep 1;
 //Mostrar mensaje de muerte
