@@ -75,6 +75,15 @@ switch conteo do
 		//Vehículos perdidos cuenta en misión
 		vehAliadoFinal = vehAliadoFinal * 2;
 		publicVariable "vehAliadoFinal";
+		vehiculosAbandonados = 0;
+		FAM_vehiculosBlufor = allVariables missionNamespace select {_x find "bluforveh" == 0};
+		{if (_x not in base_vehiculo) then 
+		{
+			vehiculosAbandonados = vehiculosAbandonados + 1;
+		}
+		}forEach FAM_vehiculosBlufor;
+		vehiculosAbandonados = vehiculosAbandonados *2;
+		vehAliadoFinal = vehAliadoFinal + vehiculosAbandonados;
 
 		//Penalización de tiempo
 
