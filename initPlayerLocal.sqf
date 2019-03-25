@@ -20,8 +20,6 @@ params["_player", "_didJIP"];
 if (_didJIP) then {jipeado = true} else {jipeado = false};
 /****************************************** Manejadores de eventos *********************************************************************** */
 
-// Evento de muerto, para restar puntos cada vez que un jugador muera
-
 // Evento de terminar de cargar
 ["cargado", "onPreloadFinished", 
 {
@@ -32,9 +30,11 @@ if (_didJIP) then {jipeado = true} else {jipeado = false};
 	SEGUNDA_LINEA = getMissionConfigValue ["SEGUNDA_LINEA", "segunda_linea"];
 
 	if (!jipeado) then {[PRIMERA_LINEA, SEGUNDA_LINEA] execVM "scripts\IntroFAM.sqf"};
+	[] execVM "scripts\esEspectador.sqf";
 
 }] call BIS_fnc_addStackedEventHandler;
 
+// Evento de muerto, para restar puntos cada vez que un jugador muera
 _player addMPEventHandler ["MPKilled", 
 {
 	params ["_unit", "_killer"];
