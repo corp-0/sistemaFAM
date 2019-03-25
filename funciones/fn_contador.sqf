@@ -77,7 +77,7 @@ switch conteo do
 		publicVariable "vehAliadoFinal";
 		vehiculosAbandonados = 0;
 		FAM_vehiculosBlufor = allVariables missionNamespace select {_x find "bluforveh" == 0};
-		{if (_x not in base_vehiculo) then 
+		{if !(_x in list base_vehiculos) then 
 		{
 			vehiculosAbandonados = vehiculosAbandonados + 1;
 		}
