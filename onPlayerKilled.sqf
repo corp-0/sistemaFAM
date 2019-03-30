@@ -18,8 +18,14 @@
 	Retorna:
 	--
 */
-params["_player", "_killer", "_respawn", "_respawnDelay"]
 
+params["_player", "_killer", "_respawn", "_respawnDelay"];
+
+["fallo", [format["%1  ha caído en combate", name _player], '¡Restan: <t color="#ff0000">-1</t> pts!']] remoteExec ["BIS_fnc_showNotification", 0];
+
+jugadoresFinal = jugadoresFinal +1;
+publicVariable "jugadoresFinal";
+	
 sleep 1;
 //Mostrar mensaje de muerte
 titleText ["Has muerto. Entrando en modo espectador...", "BLACK", 3];
