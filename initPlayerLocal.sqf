@@ -23,9 +23,7 @@ if (_didJIP) then {jipeado = true} else {jipeado = false};
 // Evento de terminar de cargar
 ["cargado", "onPreloadFinished", 
 {
-	player hideObjectGlobal false;
-	player allowDamage true;
-	
+
 	PRIMERA_LINEA = getMissionConfigValue ["PRIMERA_LINEA", "primera_linea"];
 	SEGUNDA_LINEA = getMissionConfigValue ["SEGUNDA_LINEA", "segunda_linea"];
 
