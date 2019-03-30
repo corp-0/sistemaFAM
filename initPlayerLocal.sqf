@@ -38,7 +38,9 @@ _player addMPEventHandler ["MPKilled",
 {
 	if ( west countSide allPlayers isEqualTo 0 ) then 
 	{
-    	[] remoteExec ["scripts\todosMuertos_2.sqf", 0];
+    	if(!isServer) exitWith{};
+
+		[] execVM "scripts\todosMuertos.sqf";
 	};
 	
 }];
