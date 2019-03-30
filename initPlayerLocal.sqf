@@ -31,18 +31,19 @@ if (_didJIP) then {jipeado = true} else {jipeado = false};
 
 	if (!jipeado) then {[PRIMERA_LINEA, SEGUNDA_LINEA] execVM "scripts\IntroFAM.sqf"};
 	[] execVM "scripts\esEspectador.sqf";
+	[player] execVM "scripts\hacerVisible.sqf";
 
 }] call BIS_fnc_addStackedEventHandler;
 
-// Evento de muerto, para restar puntos cada vez que un jugador muera
-_player addMPEventHandler ["MPKilled", 
-{
-	params ["_unit", "_killer"];
-	["fallo", [format["%1  ha caído en combate", name _unit], '¡Restan: <t color="#ff0000">-1</t> pts!']] call BIS_fnc_showNotification;
-	jugadoresFinal = jugadoresFinal +1;
-	publicVariableServer "jugadoresFinal";
+// Evento de muerto, para restar puntos cada vez que un jugador muera -- MOVIDO A onPlayerKilled.sqf
+// _player addMPEventHandler ["MPKilled", 
+// {
+// 	params ["_unit", "_killer"];
+// 	["fallo", [format["%1  ha caído en combate", name _unit], '¡Restan: <t color="#ff0000">-1</t> pts!']] call BIS_fnc_showNotification;
+// 	jugadoresFinal = jugadoresFinal +1;
+// 	publicVariableServer "jugadoresFinal";
 	
-}];
+// }];
 
 /************************************ Fin manejadores ************************************************************************************ */
 missionNamespace getVariable "tiempoFinal";
