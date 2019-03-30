@@ -34,14 +34,14 @@ if (_didJIP) then {jipeado = true} else {jipeado = false};
 }] call BIS_fnc_addStackedEventHandler;
 
 // Evento de muerto, para restar puntos cada vez que un jugador muera -- MOVIDO A onPlayerKilled.sqf
-// _player addMPEventHandler ["MPKilled", 
-// {
-// 	params ["_unit", "_killer"];
-// 	["fallo", [format["%1  ha caído en combate", name _unit], '¡Restan: <t color="#ff0000">-1</t> pts!']] call BIS_fnc_showNotification;
-// 	jugadoresFinal = jugadoresFinal +1;
-// 	publicVariableServer "jugadoresFinal";
+_player addMPEventHandler ["MPKilled", 
+{
+	if ( west countSide allPlayers isEqualTo 0 ) then 
+	{
+    	[] remoteExec ["scripts\todosMuertos_2.sqf", 0];
+	};
 	
-// }];
+}];
 
 /************************************ Fin manejadores ************************************************************************************ */
 missionNamespace getVariable "tiempoFinal";
