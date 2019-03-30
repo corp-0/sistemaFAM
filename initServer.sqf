@@ -49,6 +49,8 @@ publicVariable "vehEnemigoFinal";
 // Vehículos aliados perdidos
 vehAliadoFinal = 0;
 publicVariable "vehAliadoFinal";
+vehiculosAbandonados = 0;
+publicVariable "vehiculosAbandonados";
 
 //Bono bandera 
 bonoBandera    = 0;

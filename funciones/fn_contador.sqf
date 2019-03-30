@@ -36,7 +36,7 @@ switch conteo do
 	case 2: 
 	{
 		//quita el control del jugador
-		{_x enableSimulation false} forEach Allplayers; 
+		[[],"scripts\quitarSimulacion.sqf"] remoteExec ["BIS_fnc_execVM",0,false];
 
 		//Objetivo primario suma cada vez que se completa uno
 
@@ -50,17 +50,26 @@ switch conteo do
 		publicVariable "vehEnemigoFinal";
 
 		//Bono bandera sumará si la cantidad de jugadores que habían al inicio de misión están ahora dentro del trigger 
+		penaBandera = 0;
 		if (triggerBandera) then 
 		{
 			bonoBandera = 5;
-			penaBandera = 0;
 			
 		} else 
 		{
 			penaBandera = count List banderaArea;
-			penaBandera = jugadores - penaBandera;
+			jugadoresVivos = west countSide allPlayers;
+			penaBandera = jugadoresVivos - penaBandera;
+			if(PenaBandera > 0) then 
+			{
+				jugadoresFinal = JugadoresFinal + penaBandera;
+				[format["%1 jugadores vivos fuera del área de bandera", penaBandera]] remoteExec ["systemChat"];
+				publicVariable "jugadoresFinal";
+			};
+			
 		};
 		publicVariable "penaBandera";
+		publicVariable "bonoBandera";
 
 		//Bajas aliadas
 		// jugadoresFinal = west countSide playableUnits;
@@ -72,21 +81,21 @@ switch conteo do
 		civilesFinal = civilesFinal * 2;
 		publicVariable "civilesFinal";
 
-		//Vehículos perdidos cuenta en misión
-		vehAliadoFinal = vehAliadoFinal * 2;
-
-		vehiculosAbandonados = 0;
+		// Detección de vehículos perdidos y abandonados
 		FAM_vehiculosBlufor = allVariables missionNamespace select {_x find "bluforveh" == 0};
-		{if !(_x in list base_vehiculos) then 
+	
+		FAM_vehiculosBlufor = FAM_vehiculosBlufor apply {missionNameSpace getVariable _x};
+
+		{if( !(_x inArea base_vehiculos) && alive _x) then 
 		{
 			vehiculosAbandonados = vehiculosAbandonados + 1;
-		}
-		}forEach FAM_vehiculosBlufor;
-		vehiculosAbandonados = vehiculosAbandonados *2;
-		vehAliadoFinal = vehAliadoFinal + vehiculosAbandonados;
-		publicVariable "vehAliadoFinal";
-		//Penalización de tiempo
+		}}forEach FAM_vehiculosBlufor;
 
+		if (vehiculosAbandonados > 0) then {vehAliadoFinal = vehAliadoFinal + vehiculosAbandonados};
+		
+		publicVariable "vehAliadoFinal";
+		
+		//Penalización de tiempo
 		if (publicTimerOver) then 
 		{
 			penaTiempo = 10;
@@ -98,7 +107,6 @@ switch conteo do
 		if (PuntajeFinal < 0) then {PuntajeFinal = 0};
 		publicVariable "puntajeFinal";
 
-		
 		//Llama la pantalla de final 
 		[] remoteExecCall ["FAM_fnc_pantallaFinal", 0, true];
 	};
@@ -119,5 +127,4 @@ switch conteo do
 
 123410 = PUNTAJE FINAL (sumatoria bonos - penalizaciones)
 */ 
-
 
