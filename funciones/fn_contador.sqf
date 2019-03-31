@@ -93,6 +93,7 @@ switch conteo do
 
 		if (vehiculosAbandonados > 0) then {vehAliadoFinal = vehAliadoFinal + vehiculosAbandonados};
 		
+		vehAliadoFinal = vehAliadofinal * 2;
 		publicVariable "vehAliadoFinal";
 		
 		//Penalización de tiempo
