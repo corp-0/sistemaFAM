@@ -30,6 +30,8 @@ if (_didJIP) then {jipeado = true} else {jipeado = false};
 	if (!jipeado) then {[PRIMERA_LINEA, SEGUNDA_LINEA] execVM "scripts\IntroFAM.sqf"};
 	[] execVM "scripts\esEspectador.sqf";
 	[player] execVM "scripts\hacerVisible.sqf";
+	[] execVM "scripts\initBriefing.sqf";
+	[] execVM "scripts\terceraPersona.sqf";
 
 }] call BIS_fnc_addStackedEventHandler;
 
