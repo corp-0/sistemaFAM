@@ -82,10 +82,6 @@ switch conteo do
 		publicVariable "civilesFinal";
 
 		// Detección de vehículos perdidos y abandonados
-		FAM_vehiculosBlufor = allVariables missionNamespace select {_x find "bluforveh" == 0};
-	
-		FAM_vehiculosBlufor = FAM_vehiculosBlufor apply {missionNameSpace getVariable _x};
-
 		{if( !(_x inArea base_vehiculos) && alive _x) then 
 		{
 			vehiculosAbandonados = vehiculosAbandonados + 1;
