@@ -15,29 +15,29 @@
 	--
 */
 
-puntos = _this select 0; 
-tipo   = _this select 1; 
+params["_puntos", "_tipo"]; 
 
 //Separa el caso para cada tipo
 
-switch tipo do 
+switch _tipo do 
 {
   case 1: 
   {
-	objetivoPrimario = objetivoPrimario + puntos;
+	objetivoPrimario = objetivoPrimario + _puntos;
 	publicVariable "objetivoPrimario";
-	["objetivoCumplido","¡Objetivo Primario cumplido!", [format ["sumas %1 puntos", puntos],5]] remoteExecCall ["bis_fnc_showNotification", player, true];
+	["objetivocumplido", ["¡Objetivo Primario cumplido!", format['¡Suman: <t color="#7CFC00">+%1</t> pts!', _puntos]]] remoteExecCall ["BIS_fnc_showNotification"];
+	
   };
   case 2: 
   {
-	objetivoSecundario = objetivoSecundario + puntos;
+	objetivoSecundario = objetivoSecundario + _puntos;
 	publicVariable "objetivoSecundario";
-	["objetivoCumplido", "¡Objetivo Secundario cumplido!", [format ["sumas %1 puntos", puntos],5]] remoteExecCall ["bis_fnc_showNotification", player, true];
+	["objetivocumplido", ["¡Objetivo Secundario cumplido!", format['¡Suman: <t color="#7CFC00">+%1</t> pts!', _puntos]]] remoteExecCall ["BIS_fnc_showNotification"];
   };
   case 3:
   {
-	objetivoTarea = objetivoTarea + puntos;
+	objetivoTarea = objetivoTarea + _puntos;
 	publicVariable "objetivoTarea";
-	["objetivoCumplido", "¡Tarea cumplida!", [format ["sumas %1 puntos", puntos],5]] remoteExecCall ["bis_fnc_showNotification", player, true];
+	["objetivocumplido", ["¡Tarea cumplida!", format['¡Suman: <t color="#7CFC00">+%1</t> pts!', _puntos]]] remoteExecCall ["BIS_fnc_showNotification"];
   };
 };
