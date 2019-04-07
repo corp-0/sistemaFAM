@@ -14,5 +14,6 @@ class FAM
         class IAskill {};
         class cronometro {};
         class initCronometro {};
+        class vehiculosEH {};
     };
 };
