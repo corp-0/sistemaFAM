@@ -40,7 +40,11 @@ _player addMPEventHandler ["MPKilled",
 {
 	if ( west countSide allPlayers isEqualTo 0 ) then 
 	{
-    	if(!isServer) exitWith{};
+    	if(driver (vehicle player) != player && vehicle player in FAM_vehiculosBlufor)then{
+			vehAliadoFinal = vehAliadoFinal + 1;
+			["fallo", ["Se ha perdido un vehículo", '¡Restan: <t color="#ff0000">-2</t> pts!']] call BIS_fnc_showNotification; 
+		};
+		if(!isServer) exitWith{};
 
 		[] execVM "scripts\todosMuertos.sqf";
 	};
