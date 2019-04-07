@@ -30,6 +30,7 @@ addMissionEventHandler ["handleDisconnect", {
 }];
 
 [] call FAM_fnc_bandera;
+[] call FAM_fnc_vehiculosEH;
 
 // Inicializando las variables del sistema 
 
